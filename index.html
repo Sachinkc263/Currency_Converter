@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency Converter</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+        integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <div id="title-container">
+        <p id="title"><i class="fa-solid fa-chart-line"></i>Currency Converter</p>
+        <p id="subtitle">Convert currencies with real-time rates</p>
+    </div>
+    <div class="box-container">
+        <div id="exchange-calculator">
+            <form id="converterForm">
+                <div id="amount-container">
+                    <p>Amount:<p>
+                    <input type="number" id="amount" value="1" required>
+                </div>
+
+                <div id="currency-container">
+                    <p>Currency:</p>
+                    <div id="option-container">
+                        <!-- <label for="fromCurrency">From:</label> -->
+                        <div class="select-options" id="fromOptionsContainer">
+                            <select class="currency-select" id="fromOptions" required>
+                                <option value="" disabled selected>From</option>
+                                <option value="USD">USD</option>
+                                <option value="EUR">EUR</option>
+                                <option value="GBP">GBP</option>
+                            </select>
+                        </div>
+                        <i class="fa-solid fa-arrow-right-arrow-left" id="swapIcon" style="cursor:pointer;"></i>
+                        <!-- <label for="toCurrency">To:</label> -->
+                        <div class="select-options" id="toOptionsContainer">
+                            <select class="currency-select" id="toOptions" required>
+                                <option value="" disabled selected>To</option>
+                                <option value="USD">USD</option>
+                                <option value="EUR">EUR</option>
+                                <option value="GBP">GBP</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <button type="button" id="submit">Convert</button>
+            </form>
+            <div id="result-container">
+                <label for="result">Converted Amount:</label>
+                <input type="number" id="result" name="result" value="" disabled>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>

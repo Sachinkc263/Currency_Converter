@@ -200,6 +200,10 @@ button:hover {
         height: 40px;
         border-radius: 6px;
     }
+    select{
+        padding: 0;
+        width: 80px;
+    }
 
     img {
         max-width: 40px;

@@ -110,7 +110,6 @@ async function apiCall(url) {
         'x-cg-demo-api-key': API_KEY,
         'accept': 'application/json'
     };
-    console.log(`Making API call to: ${url}`);
     const response = await fetch(url, {
         headers: defaultHeaders,
         mode: 'cors'
@@ -119,7 +118,6 @@ async function apiCall(url) {
         return response;
     }
     else {
-        console.error('Error fetching data:', response.statusText);
         return null;
     }
 
@@ -155,7 +153,6 @@ async function getCryptoImg(currencyCode) {
     const response = await apiCall(`https://api.coingecko.com/api/v3/coins/${coinId}?localization=false&tickers=false&market_data=false&community_data=false&developer_data=false&sparkline=false`);
     if (response) {
         const data = await response.json();
-        console.log(`Fetched image for ${currencyCode}: ${data.image.small}`);
         cryptoImgCache[currencyCode] = data.image.small;
         return data.image.small;
     } else return null;
@@ -258,7 +255,11 @@ document.head.appendChild(style);
 
 // Get currency rate from currency code
 let exchange = () => {
-    var amount = document.getElementById('amount').value;
+    var amount = document.getElementById('amount');
+    if (amount.value <= 0) {
+        amount.value = 1;
+        amount.innerHTML = 1;
+    }
     var fromCurrency = document.getElementById('fromOptions').value;
     let lowerFromCurrency = fromCurrency.toLowerCase();
     var toCurrency = document.getElementById('toOptions').value;
@@ -276,7 +277,7 @@ let exchange = () => {
             for (let key in data[lowerFromCurrency]) {
                 if (key === lowerToCurrency) {
                     let toRate = data[lowerFromCurrency][key];
-                    let convertedAmount = (amount * toRate);
+                    let convertedAmount = (amount.value * toRate);
                     result.setAttribute('value', `${convertedAmount}`);
                     console.log(`Converted Amount: ${convertedAmount} ${toCurrency}`);
                 }
